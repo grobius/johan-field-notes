@@ -27,7 +27,7 @@ const date = note.data.published.toLocaleDateString('en-GB', { day: '2-digit', m
       </header>
       {note.data.image && (
         <figure class="article-hero">
-          <img src={note.data.image} alt={note.data.imageAlt ?? ''} />
+          <img src={note.data.image} alt={note.data.imageAlt ?? ''} width="1000" height="600" />
           {note.data.imageLabel && <figcaption class="media-label">{note.data.imageLabel}</figcaption>}
         </figure>
       )}

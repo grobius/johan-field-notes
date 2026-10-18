@@ -1,0 +1,12 @@
+[
+  {
+    "applicationId": "your-ttn-application",
+    "deviceId": "your-ttn-device",
+    "alias": "NODE 01",
+    "fields": [
+      { "key": "temperature", "label": "Temperature", "unit": "°C", "min": -50, "max": 85, "staleAfterSeconds": 900 },
+      { "key": "humidity", "label": "Humidity", "unit": "%", "min": 0, "max": 100, "staleAfterSeconds": 900 },
+      { "key": "battery", "label": "Battery", "unit": "V", "min": 0, "max": 10, "staleAfterSeconds": 21600 }
+    ]
+  }
+]

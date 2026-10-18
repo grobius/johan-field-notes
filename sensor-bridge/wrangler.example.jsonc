@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/wrangler/config-schema.json",
+  "name": "johan-sensor-bridge",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-12",
+  "d1_databases": [{
+    "binding": "SENSOR_DB",
+    "database_name": "johan-sensors",
+    "database_id": "REPLACE_WITH_DATABASE_ID"
+  }]
+}

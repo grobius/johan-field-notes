@@ -2,6 +2,21 @@
 
 A personal Astro site deployed to Cloudflare Workers from the `main` branch.
 
+## Sensor stream
+
+The home page includes a generic, accessible sensor ticker. Without
+`PUBLIC_SENSOR_FEED_URL` it shows explicitly labelled, fixed demo readings.
+With a feed URL it polls once per minute, displays measurement age and stale/offline
+states, and never substitutes demo values on failure. Motion can be paused and
+respects reduced-motion preferences. On mobile the panel follows the main content.
+
+See [the Swedish TTN setup guide](docs/ttn-setup.md) for the optional, separate
+Cloudflare Worker and D1 database in `sensor-bridge/`. The site's existing Worker
+configuration is unchanged. No cloud resources are provisioned by this commit.
+
+Run `npm test` and `npm run build` before merging. Test normalizers, webhook auth,
+data privacy, and replay/out-of-order handling before connecting real devices.
+
 ## Edit your profile
 
 Profile text, links and current-focus topics live in:
