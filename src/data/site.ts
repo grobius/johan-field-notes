@@ -6,7 +6,7 @@ export const site = {
   bio:
     'Cloud & AI specialist and tech-driven product leader in Stockholm. I write about digital innovation, applied AI, automation, connected devices and the useful lessons hiding inside real projects.',
   location: 'Stockholm, Sweden',
-  profileImage: '/images/profile-placeholder.svg',
+  profileImage: '/images/profile.jpg',
   profileImageAlt: 'Johan Sjöberg',
   social: {
     linkedin: 'https://www.linkedin.com/in/johansj',
