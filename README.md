@@ -1,43 +1,58 @@
-# Astro Starter Kit: Minimal
+# Johan's Field Notes
 
-```sh
-npm create astro@latest -- --template minimal
-```
+A personal Astro site deployed to Cloudflare Workers from the `main` branch.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Edit your profile
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+Profile text, links and current-focus topics live in:
 
 ```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+src/data/site.ts
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+To add a profile photo, place a square image in `public/images/`, for example:
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```text
+public/images/profile.webp
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+Then change `profileImage` in `src/data/site.ts` to:
 
-## 🧞 Commands
+```ts
+profileImage: '/images/profile.webp',
+```
 
-All commands are run from the root of the project, from a terminal:
+A square WebP or JPEG around 1200 × 1200 pixels and below 1 MB works well.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Add a field note
 
-## 👀 Want to learn more?
+Create a Markdown file in `src/content/notes/`. Use an existing file as a starting point. Each file automatically receives its own `/notes/.../` URL and appears on the home page.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Images used by notes belong in `public/images/` and are referenced as `/images/filename.ext`.
+
+## Local development
+
+```sh
+npm install
+npm run dev
+```
+
+Open `http://localhost:4321`. Before publishing, run:
+
+```sh
+npm run build
+```
+
+Push changes through a branch and pull request. Merging to `main` triggers the Cloudflare deployment.
+
+## Project structure
+
+```text
+public/images/             Static images
+src/components/            Reusable UI components
+src/content/notes/         Blog posts in Markdown
+src/data/site.ts           Profile and current-focus content
+src/layouts/               Page shells
+src/pages/                 Routes
+src/styles/global.css      Visual system and responsive layout
+```

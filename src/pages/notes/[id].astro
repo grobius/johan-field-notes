@@ -1,0 +1,37 @@
+---
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProfileRail from '../../components/ProfileRail.astro';
+
+export async function getStaticPaths() {
+  const notes = await getCollection('notes');
+  return notes.map((note) => ({ params: { id: note.id }, props: { note } }));
+}
+
+interface Props { note: CollectionEntry<'notes'> }
+const { note } = Astro.props;
+const { Content } = await render(note);
+const date = note.data.published.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+---
+
+<BaseLayout title={`${note.data.title} — Johan Sjöberg`} description={note.data.description}>
+  <div class="site-shell">
+    <ProfileRail />
+    <main id="content" class="article-wrap">
+      <a class="back-link" href="/">← Back to field notes</a>
+      <header class="article-header">
+        <div class="article-meta"><span>{note.data.kind}</span><time datetime={note.data.published.toISOString()}>{date}</time></div>
+        <h1>{note.data.title}</h1>
+        <p class="lead">{note.data.description}</p>
+        <div class="tag-row">{note.data.tags.map((tag) => <span>{tag}</span>)}</div>
+      </header>
+      {note.data.image && (
+        <figure class="article-hero">
+          <img src={note.data.image} alt={note.data.imageAlt ?? ''} />
+          {note.data.imageLabel && <figcaption class="media-label">{note.data.imageLabel}</figcaption>}
+        </figure>
+      )}
+      <article class="prose"><Content /></article>
+    </main>
+  </div>
+</BaseLayout>
