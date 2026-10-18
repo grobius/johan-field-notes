@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
+  <rect width="1200" height="720" fill="#0b1014"/>
+  <path d="M0 470c180-55 310 60 480 5s310-55 480 0 240-18 240-18v263H0Z" fill="#123d5a"/>
+  <path d="M0 470c180-55 310 60 480 5s310-55 480 0 240-18 240-18" fill="none" stroke="#64b5f6" stroke-width="5"/>
+  <rect x="420" y="130" width="360" height="230" rx="18" fill="#123126" stroke="#73d29b" stroke-width="4"/>
+  <circle cx="480" cy="190" r="17" fill="#e9a86b"/><circle cx="720" cy="190" r="17" fill="#e9a86b"/>
+  <path d="M500 250h200M500 290h110" stroke="#86a499" stroke-width="13"/>
+  <path d="M600 360v250" stroke="#e8edf1" stroke-width="5" stroke-dasharray="13 10"/>
+  <circle cx="600" cy="610" r="23" fill="#64b5f6"/>
+  <text x="72" y="86" fill="#6e7b84" font-family="monospace" font-size="24">WAKE / MEASURE / SEND / SLEEP</text>
+</svg>

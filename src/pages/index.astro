@@ -1,16 +1,97 @@
 ---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ProfileRail from '../components/ProfileRail.astro';
+import NoteCard from '../components/NoteCard.astro';
+import { deskItems, site } from '../data/site';
+
+const notes = (await getCollection('notes')).sort(
+  (a, b) => b.data.published.valueOf() - a.data.published.valueOf()
+);
+const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout>
+  <div class="site-shell">
+    <ProfileRail />
+    <div class="main-column">
+      <header class="topbar">
+        <span>FIELD NOTES / 2026</span>
+        <nav aria-label="Primary navigation">
+          <a href="#notes">Notes</a>
+          <a href="#desk">On my desk</a>
+          <a href={site.social.github} target="_blank" rel="noreferrer">Source ↗</a>
+        </nav>
+        <span class="build-status">live build</span>
+      </header>
+
+      <main id="content" class="content-wrap">
+        <section class="hero">
+          <p class="section-kicker">Notes from practice, not the sidelines</p>
+          <h1>I turn <em>ideas into things</em> I can test, question and improve.</h1>
+          <p>{site.intro}</p>
+        </section>
+
+        <section id="notes" aria-labelledby="notes-title">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Log entries</p>
+              <h2 id="notes-title">Recent field notes</h2>
+            </div>
+            <div class="filters" aria-label="Filter notes">
+              <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+              {allTags.map((tag) => (
+                <button class="filter-button" type="button" data-filter={tag.toLowerCase()} aria-pressed="false">{tag}</button>
+              ))}
+            </div>
+          </div>
+          <div class="notes-grid">
+            {notes.map((note) => (
+              <NoteCard
+                id={note.id}
+                title={note.data.title}
+                description={note.data.description}
+                published={note.data.published}
+                tags={note.data.tags}
+                kind={note.data.kind}
+                featured={note.data.featured}
+                image={note.data.image}
+                imageAlt={note.data.imageAlt}
+                imageLabel={note.data.imageLabel}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section id="desk" aria-labelledby="desk-title">
+          <div class="section-head">
+            <div>
+              <p class="section-kicker">Current state</p>
+              <h2 id="desk-title">On my desk</h2>
+            </div>
+          </div>
+          <div class="desk-grid">
+            {deskItems.map((item) => (
+              <div class="desk-item"><span>{item.label}</span><p>{item.title}</p></div>
+            ))}
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll<HTMLButtonElement>('[data-filter]');
+    const cards = document.querySelectorAll<HTMLElement>('.note-card');
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const filter = button.dataset.filter ?? 'all';
+        buttons.forEach((item) => item.setAttribute('aria-pressed', String(item === button)));
+        cards.forEach((card) => {
+          const tags = (card.dataset.tags ?? '').split('|');
+          card.hidden = filter !== 'all' && !tags.includes(filter);
+        });
+      });
+    });
+  </script>
+</BaseLayout>
