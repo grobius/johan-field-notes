@@ -5,6 +5,8 @@ dist/
 
 # dependencies
 node_modules/
+.wrangler/
+worker-configuration.d.ts
 
 # logs
 npm-debug.log*
