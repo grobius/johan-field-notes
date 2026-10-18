@@ -18,8 +18,8 @@ const date = published.toLocaleDateString('en-GB', { day: '2-digit', month: 'sho
 
 <article class:list={['note-card', { featured }]} data-tags={tags.join('|').toLowerCase()}>
   {image && (
-    <a class="media-frame" href={`/notes/${id}/`} tabindex="-1" aria-hidden="true">
-      <img src={image} alt={imageAlt ?? ''} loading="lazy" />
+    <a class:list={['media-frame', { 'media-diagram': image.endsWith('.svg') }]} href={`/notes/${id}/`} tabindex="-1" aria-hidden="true">
+      <img src={image} alt={imageAlt ?? ''} width="1000" height="600" loading="lazy" />
       {imageLabel && <span class="media-label">{imageLabel}</span>}
     </a>
   )}

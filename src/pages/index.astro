@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import ProfileRail from '../components/ProfileRail.astro';
 import NoteCard from '../components/NoteCard.astro';
+import SensorTicker from '../components/SensorTicker.astro';
 import { deskItems, site } from '../data/site';
 
 const notes = (await getCollection('notes')).sort(
@@ -19,16 +20,15 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
         <span>FIELD NOTES / 2026</span>
         <nav aria-label="Primary navigation">
           <a href="#notes">Notes</a>
-          <a href="#desk">On my desk</a>
-          <a href={site.social.github} target="_blank" rel="noreferrer">Source ↗</a>
+          <a href="#projects">Projects</a>
+          <a href="#about">About</a>
         </nav>
-        <span class="build-status">live build</span>
       </header>
 
       <main id="content" class="content-wrap">
         <section class="hero">
-          <p class="section-kicker">Notes from practice, not the sidelines</p>
-          <h1>I turn <em>ideas into things</em> I can test, question and improve.</h1>
+          <p class="section-kicker">A personal field journal</p>
+          <h1>Strategy, prototypes<br />and things I’m learning.</h1>
           <p>{site.intro}</p>
         </section>
 
@@ -63,6 +63,20 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
           </div>
         </section>
 
+        <section id="projects" aria-labelledby="projects-title">
+          <div class="section-head"><h2 id="projects-title">Selected projects &amp; work</h2></div>
+          <div class="projects-grid">
+            <a class="project-card" href="/notes/prototype-before-recommend/">
+              <span class="project-icon" aria-hidden="true">◇</span>
+              <div><h3>From question to prototype</h3><p>Small working models that make AI and architecture decisions more concrete.</p><span class="project-link">Read the approach ↗</span></div>
+            </a>
+            <a class="project-card" href="/notes/water-monitoring/">
+              <span class="project-icon" aria-hidden="true">⌁</span>
+              <div><h3>Low-power sensing</h3><p>A home-lab experiment in battery-powered sensors and useful, infrequent readings.</p><span class="project-link">Explore the lab ↗</span></div>
+            </a>
+          </div>
+        </section>
+
         <section id="desk" aria-labelledby="desk-title">
           <div class="section-head">
             <div>
@@ -76,8 +90,10 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
             ))}
           </div>
         </section>
+        <footer class="site-footer">Johan Sjöberg · Field notes, not finished answers.<a href={site.social.github} aria-label="Johan on GitHub">&gt;_</a></footer>
       </main>
     </div>
+    <SensorTicker />
   </div>
 
   <script>

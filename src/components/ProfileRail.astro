@@ -2,7 +2,7 @@
 import { site } from '../data/site';
 ---
 
-<aside class="profile-rail" aria-label="About Johan">
+<aside id="about" class="profile-rail" aria-label="About Johan">
   <div class="profile-sticky">
     <a class="wordmark" href="/" aria-label="Johan Sjöberg, home">
       <span class="prompt-mark" aria-hidden="true">&gt;_</span>
@@ -16,7 +16,7 @@ import { site } from '../data/site';
 
     <div class="profile-copy">
       <p class="section-kicker">About me</p>
-      <h1>{site.name}</h1>
+      <h2>{site.name}</h2>
       <p>{site.bio}</p>
     </div>
 
@@ -34,7 +34,7 @@ import { site } from '../data/site';
     </nav>
 
     <div class="focus-block">
-      <p class="section-kicker">Current coordinates</p>
+      <p class="section-kicker">Exploring</p>
       <ul>
         {site.focus.map((item) => <li>{item}</li>)}
       </ul>
