@@ -1,4 +1,6 @@
-type Reading = { id: string; label: string; node: string; value: number; unit: string; observedAt: string; staleAfterSeconds: number };
+import { renderSensorReading, type SensorValue } from '../lib/sensor-presentation';
+
+type Reading = SensorValue & { observedAt: string; staleAfterSeconds: number };
 
 export function initSensorTicker(panel: HTMLElement) {
   const list = panel.querySelector<HTMLUListElement>('.sensor-list')!;
@@ -39,7 +41,7 @@ export function initSensorTicker(panel: HTMLElement) {
   function age(reading: Reading) {
     const seconds = Math.max(0, Math.floor((Date.now() - Date.parse(reading.observedAt)) / 1000));
     const time = seconds < 60 ? 'just now' : seconds < 3600 ? `${Math.floor(seconds / 60)} min ago` : seconds < 86400 ? `${Math.floor(seconds / 3600)} h ago` : `${Math.floor(seconds / 86400)} d ago`;
-    return `${reading.node} · ${time}${seconds > reading.staleAfterSeconds ? ' · stale' : ''}`;
+    return `${time}${seconds > reading.staleAfterSeconds ? ' · stale' : ''}`;
   }
   function updateAges() {
     panel.querySelectorAll<HTMLElement>('[data-reading-id]').forEach(el => {
@@ -66,17 +68,7 @@ export function initSensorTicker(panel: HTMLElement) {
       failed = false;
       const content = JSON.stringify(readings);
       if (content !== lastContent) {
-        list.replaceChildren();
-        for (const r of readings) {
-          const li = document.createElement('li'); li.className = 'sensor-reading';
-          const icon = document.createElement('span'); icon.className = 'sensor-icon'; icon.textContent = '◦'; icon.setAttribute('aria-hidden', 'true');
-          const body = document.createElement('div');
-          const row = document.createElement('div'); row.className = 'sensor-value';
-          const label = document.createElement('span'); label.textContent = r.label;
-          const value = document.createElement('strong'); value.textContent = `${new Intl.NumberFormat('en', { maximumFractionDigits: 2 }).format(r.value)} ${r.unit}`;
-          const time = document.createElement('p'); time.dataset.readingId = r.id;
-          row.append(label, value); body.append(row, time); li.append(icon, body); list.append(li);
-        }
+        list.innerHTML = readings.map(r => renderSensorReading(r)).join('');
         lastContent = content;
         animate();
       }
