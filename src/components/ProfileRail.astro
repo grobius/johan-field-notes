@@ -11,12 +11,13 @@ import { site } from '../data/site';
 
     <div class="profile-image-wrap">
       <img class="profile-image" src={site.profileImage} alt={site.profileImageAlt} width="320" height="320" />
-      <span class="availability"><span></span> based in Stockholm</span>
+      <img class="photo-clip" src="/images/paperclip.svg" alt="" aria-hidden="true" width="40" height="106" />
     </div>
 
     <div class="profile-copy">
       <p class="section-kicker">About me</p>
       <h2>{site.name}</h2>
+      <p class="profile-location">{site.location}</p>
       <p>{site.bio}</p>
     </div>
 
@@ -40,6 +41,5 @@ import { site } from '../data/site';
       </ul>
     </div>
 
-    <p class="rail-footer">Built in the open with Astro + Cloudflare.</p>
   </div>
 </aside>

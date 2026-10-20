@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 106" fill="none">
+  <defs>
+    <linearGradient id="steel" x1="5" y1="0" x2="34" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#787b78"/>
+      <stop offset=".22" stop-color="#e9e9e1"/>
+      <stop offset=".48" stop-color="#a2a49f"/>
+      <stop offset=".76" stop-color="#faf9f0"/>
+      <stop offset="1" stop-color="#737773"/>
+    </linearGradient>
+    <path id="wire" d="M14 30v49a6 6 0 0 0 12 0V20a10 10 0 0 0-20 0v62a14 14 0 0 0 28 0V26"/>
+  </defs>
+  <use href="#wire" stroke="#363b38" stroke-width="4.8" stroke-linecap="round"/>
+  <use href="#wire" stroke="url(#steel)" stroke-width="3.2" stroke-linecap="round"/>
+</svg>

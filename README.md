@@ -19,6 +19,16 @@ data privacy, and replay/out-of-order handling before connecting real devices.
 
 ## Edit your profile
 
+The terminal-inspired theme uses neutral black surfaces, muted green and amber,
+IBM Plex Sans for prose, and Courier New (with Courier/Liberation Mono fallbacks)
+for navigation, metadata and sensor values. Theme tokens live in
+`src/styles/global.css`.
+
+The portrait's paper border, slight tilt and shadow are CSS. The decorative metal
+clip is `public/images/paperclip.svg`. Replacing the profile photo retains the
+card treatment; no edits to the original portrait are needed. The clip is hidden
+from assistive technology and scales down with the card on mobile.
+
 Profile text, links and current-focus topics live in:
 
 ```text

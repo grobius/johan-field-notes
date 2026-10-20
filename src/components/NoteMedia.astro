@@ -1,0 +1,8 @@
+---
+interface Props { id: string; image: string; imageAlt?: string; imageLabel?: string; }
+const { id, image, imageAlt, imageLabel } = Astro.props;
+---
+<a class:list={['media-frame', { 'media-diagram': image.endsWith('.svg') }]} href={`/notes/${id}/`} tabindex="-1" aria-hidden="true">
+  <img src={image} alt={imageAlt ?? ''} width="1200" height="720" loading="lazy" />
+  {imageLabel && <span class="media-label">{imageLabel}</span>}
+</a>
