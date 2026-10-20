@@ -1,9 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720">
-  <rect width="1200" height="720" fill="#0c1115"/>
-  <g font-family="monospace" font-size="22">
-    <rect x="100" y="245" width="260" height="210" fill="#121a20" stroke="#374550" stroke-width="3"/><text x="138" y="306" fill="#96a2ab">01 / QUESTION</text><path d="M140 352h180M140 390h122" stroke="#53616b" stroke-width="12"/>
-    <rect x="470" y="190" width="260" height="320" fill="#13202a" stroke="#64b5f6" stroke-width="3"/><text x="508" y="252" fill="#64b5f6">02 / PROTOTYPE</text><circle cx="600" cy="358" r="72" fill="none" stroke="#64b5f6" stroke-width="6"/><path d="m570 358 22 22 43-49" fill="none" stroke="#73d29b" stroke-width="8"/>
-    <rect x="840" y="245" width="260" height="210" fill="#121a20" stroke="#374550" stroke-width="3"/><text x="878" y="306" fill="#96a2ab">03 / DECISION</text><path d="M880 352h180M880 390h145" stroke="#53616b" stroke-width="12"/>
+  <rect width="1200" height="720" fill="#0d0f11"/>
+  <g font-family="Courier New, Courier, monospace" font-size="22">
+    <rect x="100" y="245" width="260" height="210" fill="#171b1e" stroke="#343b3f" stroke-width="3"/><text x="138" y="306" fill="#b0b7b9">01 / QUESTION</text><path d="M140 352h180M140 390h122" stroke="#65716d" stroke-width="12"/>
+    <rect x="470" y="190" width="260" height="320" fill="#1c2421" stroke="#aec5ad" stroke-width="3"/><text x="508" y="252" fill="#aec5ad">02 / PROTOTYPE</text><circle cx="600" cy="358" r="72" fill="none" stroke="#aec5ad" stroke-width="6"/><path d="m570 358 22 22 43-49" fill="none" stroke="#aec5ad" stroke-width="8"/>
+    <rect x="840" y="245" width="260" height="210" fill="#171b1e" stroke="#343b3f" stroke-width="3"/><text x="878" y="306" fill="#b0b7b9">03 / DECISION</text><path d="M880 352h180M880 390h145" stroke="#65716d" stroke-width="12"/>
   </g>
-  <path d="M360 350h110M730 350h110" stroke="#e9a86b" stroke-width="4" stroke-dasharray="12 10"/>
+  <path d="M360 350h110M730 350h110" stroke="#d6ac79" stroke-width="4" stroke-dasharray="12 10"/>
 </svg>

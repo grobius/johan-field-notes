@@ -17,7 +17,6 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
     <ProfileRail />
     <div class="main-column">
       <header class="topbar">
-        <span>FIELD NOTES / 2026</span>
         <nav aria-label="Primary navigation">
           <a href="#notes">Notes</a>
           <a href="#projects">Projects</a>
@@ -27,21 +26,20 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
 
       <main id="content" class="content-wrap">
         <section class="hero">
-          <p class="section-kicker">A personal field journal</p>
-          <h1>Strategy, prototypes<br />and things I’m learning.</h1>
+          <p class="section-kicker"><span class="prompt-mark" aria-hidden="true">&gt;_</span> Field notes</p>
+          <h1>Strategy, prototypes<br /> and things I’m learning.</h1>
           <p>{site.intro}</p>
         </section>
 
         <section id="notes" aria-labelledby="notes-title">
           <div class="section-head">
             <div>
-              <p class="section-kicker">Log entries</p>
-              <h2 id="notes-title">Recent field notes</h2>
+              <h2 id="notes-title" class="section-kicker terminal-section"><span aria-hidden="true">// </span>Recent notes</h2>
             </div>
             <div class="filters" aria-label="Filter notes">
-              <button class="filter-button" type="button" data-filter="all" aria-pressed="true">All</button>
+              <button class="filter-button" type="button" data-filter="all" aria-pressed="true"><span aria-hidden="true">[ </span>All<span aria-hidden="true"> ]</span></button>
               {allTags.map((tag) => (
-                <button class="filter-button" type="button" data-filter={tag.toLowerCase()} aria-pressed="false">{tag}</button>
+                <button class="filter-button" type="button" data-filter={tag.toLowerCase()} aria-pressed="false"><span aria-hidden="true">[ </span>{tag}<span aria-hidden="true"> ]</span></button>
               ))}
             </div>
           </div>
@@ -64,7 +62,7 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
         </section>
 
         <section id="projects" aria-labelledby="projects-title">
-          <div class="section-head"><h2 id="projects-title">Selected projects &amp; work</h2></div>
+          <div class="section-head"><h2 id="projects-title" class="section-kicker terminal-section"><span aria-hidden="true">// </span>Selected projects &amp; work</h2></div>
           <div class="projects-grid">
             <a class="project-card" href="/notes/prototype-before-recommend/">
               <span class="project-icon" aria-hidden="true">◇</span>
@@ -80,8 +78,7 @@ const allTags = [...new Set(notes.flatMap((note) => note.data.tags))].sort();
         <section id="desk" aria-labelledby="desk-title">
           <div class="section-head">
             <div>
-              <p class="section-kicker">Current state</p>
-              <h2 id="desk-title">On my desk</h2>
+              <h2 id="desk-title" class="section-kicker terminal-section"><span aria-hidden="true">// </span>On my desk</h2>
             </div>
           </div>
           <div class="desk-grid">

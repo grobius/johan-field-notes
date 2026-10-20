@@ -8,7 +8,7 @@ const samples = [
 ];
 ---
 <section class="sensor-panel" aria-labelledby="sensor-title" data-sensor-feed={feedUrl}>
-  <div class="sensor-heading"><h2 id="sensor-title">◉ Sensor stream</h2><button type="button" class="sensor-pause" aria-label="Pause sensor animation" aria-pressed="false" hidden>Ⅱ</button></div>
+  <div class="sensor-heading"><h2 id="sensor-title"><span aria-hidden="true">&gt;_ </span>Sensor stream</h2><button type="button" class="sensor-pause" aria-label="Pause sensor animation" aria-pressed="false" hidden>Ⅱ</button></div>
   <p class="sensor-status" role="status">{feedUrl ? 'Connecting…' : 'Demo data'}</p>
   <div class="sensor-window" tabindex="0" aria-label="Sensor readings. Focus to pause movement.">
     <div class="sensor-track">
