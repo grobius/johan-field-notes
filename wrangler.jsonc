@@ -13,11 +13,17 @@
 	"observability": {
 		"enabled": true
 	},
+	"ratelimits": [
+		{ "name": "REACTION_READ_LIMITER", "namespace_id": "14244066201", "simple": { "limit": 120, "period": 60 } },
+		{ "name": "REACTION_WRITE_LIMITER", "namespace_id": "14244066202", "simple": { "limit": 20, "period": 60 } }
+	],
 	"d1_databases": [
 		{
 			"binding": "johan_sensors",
 			"database_name": "johan-sensors",
-			"database_id": "f22f42dc-f68b-4c2c-a7ca-b62f20716a83"
+			"database_id": "f22f42dc-f68b-4c2c-a7ca-b62f20716a83",
+			"migrations_dir": "migrations/articles",
+			"migrations_table": "article_d1_migrations"
 		}
 	]
 }

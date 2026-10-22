@@ -1,16 +1,29 @@
 ---
 import '@fontsource-variable/ibm-plex-sans';
 import '../styles/global.css';
+import { canonicalUrl } from '../lib/article-social.mjs';
 
 interface Props {
   title?: string;
   description?: string;
+  image?: string;
+  imageAlt?: string;
+  article?: boolean;
+  published?: Date;
+  updated?: Date;
 }
 
 const {
   title = 'Johan Sjöberg — Field Notes',
-  description = 'Notes on applied AI, automation, cloud architecture and hands-on experiments.'
+  description = 'Notes on applied AI, automation, cloud architecture and hands-on experiments.',
+  image = '/social/field-notes.jpg',
+  imageAlt = 'Johan Sjöberg — Field Notes. Applied AI, cloud and hands-on experiments.',
+  article = false,
+  published,
+  updated,
 } = Astro.props;
+const canonical = canonicalUrl(Astro.url.pathname, Astro.site!);
+const socialImage = new URL(image, Astro.site!).href;
 ---
 
 <!doctype html>
@@ -21,6 +34,26 @@ const {
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#0d0f11" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:site_name" content="Johan Sjöberg — Field Notes" />
+    <meta property="og:type" content={article ? 'article' : 'website'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={socialImage} />
+    <meta property="og:image:alt" content={imageAlt} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:locale" content="en_GB" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={imageAlt} />
+    {article && <meta property="article:author" content="Johan Sjöberg" />}
+    {published && <meta property="article:published_time" content={published.toISOString()} />}
+    {updated && <meta property="article:modified_time" content={updated.toISOString()} />}
     <link rel="icon" type="image/svg+xml" href="/favicon-terminal.svg" />
     <title>{title}</title>
   </head>
