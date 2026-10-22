@@ -10,8 +10,10 @@ imageAlt: 'A simplified sensor board above a blue water-level line'
 imageLabel: 'Lab note / sensor node'
 ---
 
-A sensor that reports continuously is a different product from one that wakes every two hours, takes a trustworthy measurement and goes back to sleep.
+For this water-monitoring experiment, I only need one useful reading every two hours. That sounds like a small scheduling detail, but it turns the design into something quite different from a sensor that reports continuously.
 
-For this experiment, battery life is the primary design constraint. That moves attention away from peak performance and toward sleep current, controlled sensor power, warm-up time and the cost of every radio transmission.
+Battery life is therefore the primary constraint. It moves the attention away from peak performance and towards sleep current, controlled sensor power, warm-up time and the cost of every radio transmission.
 
-It is a useful reminder that the best architecture depends on the rhythm of the real-world task. A requirement that sounds like a scheduling detail can change the whole design.
+It is a useful reminder for me that the best architecture follows the rhythm of the real-world task. A requirement that initially sounds like a scheduling detail can change the whole design.
+
+The next part is to validate the assumptions with real measurements rather than a spreadsheet: what the sensor draws while asleep, how long it needs to settle, and what each transmission actually costs.

@@ -10,16 +10,16 @@ imageAlt: 'A dark editor window connected to a published page'
 imageLabel: 'Publishing workflow / v0.1'
 ---
 
-Most professional sites are written backwards. They start with a polished conclusion and hide the uncertain work that made it possible.
+I have spent enough time around polished presentations to know that they are usually written backwards. They start with the conclusion and leave out the uncertain work that made it possible.
 
-I want this site to work differently. It should be a place for observations from projects, small technical experiments and ideas that are useful before they become a finished presentation.
+I wanted this site to work differently: a place for observations from projects, small technical experiments and ideas that are still useful before they turn into a finished presentation.
 
 ## The working model
 
-The site is deliberately simple: Markdown files become pages, Git keeps the history, and Cloudflare publishes each reviewed change. An AI copywriter can help turn source material into a draft, but publishing remains a conscious decision.
+The setup is deliberately simple. Markdown files become pages, Git keeps the history, and Cloudflare publishes each reviewed change. An AI copywriter can help turn source material into a draft, but publishing remains a conscious decision.
 
-That distinction matters. Automation should remove friction, not manufacture opinions.
+That distinction matters to me. Automation should remove friction, not manufacture opinions.
 
 ## What comes next
 
-The first real test is whether the workflow makes it easier to capture what I learn while it is still fresh. If it does, the site will stay alive naturally. If it becomes another publishing obligation, the design has failed.
+The first real test is whether the workflow makes it easier to capture something while it is still fresh. If it does, the site will stay alive naturally. If it turns into another publishing obligation, I have designed the wrong thing.
