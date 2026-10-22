@@ -10,10 +10,10 @@ imageAlt: 'Layered blocks moving from question to prototype to decision'
 imageLabel: 'Method note'
 ---
 
-Architecture is partly about making decisions before all the facts are available. That makes diagrams and principles necessary—but it also makes them easy to over-trust.
+Architecture means making decisions before all the facts are available. Diagrams and principles are necessary for that work, but they are also easy to over-trust.
 
-I prefer to build the smallest useful version of the uncertain part. Not a polished demo. A probe.
+When a decision is uncertain, I prefer to build the smallest useful version of it. Not a polished demo. A probe.
 
-The prototype gives the conversation something concrete to push against: response time, missing data, awkward permissions, unclear ownership or a workflow that only looked sensible on a slide.
+It gives the conversation something concrete to push against: response time, missing data, awkward permissions, unclear ownership, or a workflow that only looked sensible on a slide.
 
-The point is not that every prototype should become production. The point is that a recommendation becomes stronger after reality has had a chance to disagree with it.
+The prototype is not a shortcut to production. It is a way to let reality disagree with the recommendation before the recommendation becomes expensive.
