@@ -6,7 +6,7 @@ tags: ['AI', 'HR', 'Automation']
 kind: 'Project'
 featured: false
 image: '/images/adam-hr-agent.webp'
-imageAlt: 'A friendly robot writing a job advert beside a recruiter's reviewing hand'
+imageAlt: "A friendly robot writing a job advert beside a recruiter's reviewing hand"
 imageLabel: 'Field note / ADam'
 ---
 
