@@ -1,5 +1,6 @@
 # build output
 dist/
+public/social/
 # generated types
 .astro/
 
@@ -22,6 +23,11 @@ pnpm-debug.log*
 .dev.vars*
 sensor-bridge/wrangler.jsonc
 sensor-bridge/devices.json
+
+# voice skill: mail extracts and passages taken from private mail
+voice-skill/data/
+voice-skill/skill/johan-voice/references/exemplars-*.md
+voice-skill/skill/johan-voice/references/before-after.md
 
 # macOS-specific files
 .DS_Store

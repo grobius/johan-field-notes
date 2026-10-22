@@ -2,6 +2,15 @@
 
 A personal Astro site deployed to Cloudflare Workers from the `main` branch.
 
+## Article likes and sharing
+
+Articles include a like counter, LinkedIn, Facebook/X/Bluesky/email sharing,
+native sharing where supported, and Copy link. Run `npm run likes:setup` once
+while authenticated to Cloudflare to create the dedicated likes table in the
+existing D1 database. See [the Swedish setup guide](docs/likes-and-sharing.md).
+Social preview JPEGs and Open Graph/X metadata are generated during
+`npm run build`. Set `PUBLIC_SITE_URL` at build time when switching domains.
+
 ## Sensor stream
 
 The home page includes a generic, accessible sensor ticker. Without
