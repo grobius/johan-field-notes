@@ -7,25 +7,23 @@ interface Props {
   published: Date;
   tags: string[];
   kind: string;
-  featured?: boolean;
   image?: string;
   imageAlt?: string;
   imageLabel?: string;
 }
 
-const { id, title, description, published, tags, kind, featured, image, imageAlt, imageLabel } = Astro.props;
+const { id, title, description, published, tags, kind, image, imageAlt, imageLabel } = Astro.props;
 const date = published.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
 ---
 
-<article class:list={['note-card', { featured }]} data-tags={tags.join('|').toLowerCase()}>
-  {image && featured && (
+<article class:list={['note-card', { 'has-image': Boolean(image) }]} data-tags={tags.join('|').toLowerCase()}>
+  {image && (
     <NoteMedia {id} {image} {imageAlt} {imageLabel} />
   )}
   <div class="note-body">
     <div class="note-meta"><span>{kind}</span><time datetime={published.toISOString()}>{date}</time></div>
     <h2><a href={`/notes/${id}/`}>{title}</a></h2>
     <p>{description}</p>
-    {image && !featured && <NoteMedia {id} {image} {imageAlt} {imageLabel} />}
     <div class="tag-row" aria-label="Tags">
       {tags.map((tag) => <span><span class="tag-bracket" aria-hidden="true">[ </span>{tag}<span class="tag-bracket" aria-hidden="true"> ]</span></span>)}
     </div>
