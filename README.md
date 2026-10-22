@@ -2,6 +2,15 @@
 
 A personal Astro site deployed to Cloudflare Workers from the `main` branch.
 
+## Article likes and sharing
+
+Articles include a like counter, LinkedIn, Facebook/X/Bluesky/email sharing,
+native sharing where supported, and Copy link. Run `npm run likes:setup` once
+while authenticated to Cloudflare to create the dedicated likes table in the
+existing D1 database. See [the Swedish setup guide](docs/likes-and-sharing.md).
+Social preview JPEGs and Open Graph/X metadata are generated during
+`npm run build`. Set `PUBLIC_SITE_URL` at build time when switching domains.
+
 ## Sensor stream
 
 The home page includes a generic, accessible sensor ticker. Without
@@ -14,10 +23,30 @@ See [the Swedish TTN setup guide](docs/ttn-setup.md) for the optional, separate
 Cloudflare Worker and D1 database in `sensor-bridge/`. The site's existing Worker
 configuration is unchanged. No cloud resources are provisioned by this commit.
 
+Demo and live readings share `src/lib/sensor-presentation.ts`: local SVG icons,
+separate values/units, and readable labels and metadata. Common English/Swedish
+measurement labels select an icon automatically; unknown types use a generic
+sensor icon. To override a custom label, add its public reading ID and icon kind
+to `src/data/sensor-kinds.ts`, for example
+`'NODE 01:supply_voltage': 'battery'`. Available kinds: `temperature`, `battery`,
+`humidity`, `level`, `pressure`, `light`, `sensor`. Voltage or percent alone does
+not imply battery or humidity. No changes to TTN, the bridge or its database are
+required. Rebuild the site after changing an override.
+
 Run `npm test` and `npm run build` before merging. Test normalizers, webhook auth,
 data privacy, and replay/out-of-order handling before connecting real devices.
 
 ## Edit your profile
+
+The terminal-inspired theme uses neutral black surfaces, muted green and amber,
+IBM Plex Sans for prose, and Courier New (with Courier/Liberation Mono fallbacks)
+for navigation, metadata and sensor values. Theme tokens live in
+`src/styles/global.css`.
+
+The portrait's paper border, slight tilt and shadow are CSS. The decorative metal
+clip is `public/images/paperclip.svg`. Replacing the profile photo retains the
+card treatment; no edits to the original portrait are needed. The clip is hidden
+from assistive technology and scales down with the card on mobile.
 
 Profile text, links and current-focus topics live in:
 

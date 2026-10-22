@@ -2,9 +2,13 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ProfileRail from '../../components/ProfileRail.astro';
+import ArticleActions from '../../components/ArticleActions.astro';
+import { canonicalUrl, socialImagePath } from '../../lib/article-social.mjs';
 
 export async function getStaticPaths() {
   const notes = await getCollection('notes');
+  const reactionIds = notes.map(note => note.data.reactionId ?? note.id);
+  if (new Set(reactionIds).size !== notes.length) throw new Error('Each note must have a unique reactionId.');
   return notes.map((note) => ({ params: { id: note.id }, props: { note } }));
 }
 
@@ -12,9 +16,10 @@ interface Props { note: CollectionEntry<'notes'> }
 const { note } = Astro.props;
 const { Content } = await render(note);
 const date = note.data.published.toLocaleDateString('en-GB', { day: '2-digit', month: 'long', year: 'numeric' });
+const shareUrl = canonicalUrl(Astro.url.pathname, Astro.site!);
 ---
 
-<BaseLayout title={`${note.data.title} — Johan Sjöberg`} description={note.data.description}>
+<BaseLayout title={`${note.data.title} — Johan Sjöberg`} description={note.data.description} image={socialImagePath(note.data.image)} imageAlt={note.data.imageAlt} article published={note.data.published} updated={note.data.updated}>
   <div class="site-shell">
     <ProfileRail />
     <main id="content" class="article-wrap">
@@ -32,6 +37,7 @@ const date = note.data.published.toLocaleDateString('en-GB', { day: '2-digit', m
         </figure>
       )}
       <article class="prose"><Content /></article>
+      <ArticleActions postId={note.data.reactionId ?? note.id} title={note.data.title} url={shareUrl} />
     </main>
   </div>
 </BaseLayout>

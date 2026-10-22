@@ -1,20 +1,20 @@
 ---
+import { renderSensorReading } from '../lib/sensor-presentation';
+
 const feedUrl = import.meta.env.PUBLIC_SENSOR_FEED_URL ?? '';
 const samples = [
-  { label: 'Temperature', value: '18.6', unit: '°C', node: 'NODE 01', icon: '◦' },
-  { label: 'Humidity', value: '62', unit: '%', node: 'NODE 02', icon: '◈' },
-  { label: 'Battery', value: '3.61', unit: 'V', node: 'NODE 03', icon: '▰' },
-  { label: 'Water level', value: '1.24', unit: 'm', node: 'NODE 04', icon: '≈' },
+  { id: 'demo:temperature', label: 'Temperature', value: 18.6, unit: '°C', node: 'NODE 01' },
+  { id: 'demo:humidity', label: 'Humidity', value: 62, unit: '%', node: 'NODE 02' },
+  { id: 'demo:battery', label: 'Battery', value: 3.61, unit: 'V', node: 'NODE 03' },
+  { id: 'demo:level', label: 'Water level', value: 1.24, unit: 'm', node: 'NODE 04' },
 ];
 ---
 <section class="sensor-panel" aria-labelledby="sensor-title" data-sensor-feed={feedUrl}>
-  <div class="sensor-heading"><h2 id="sensor-title">◉ Sensor stream</h2><button type="button" class="sensor-pause" aria-label="Pause sensor animation" aria-pressed="false" hidden>Ⅱ</button></div>
+  <div class="sensor-heading"><h2 id="sensor-title"><span aria-hidden="true">&gt;_ </span>Sensor stream</h2><button type="button" class="sensor-pause" aria-label="Pause sensor animation" aria-pressed="false" hidden>Ⅱ</button></div>
   <p class="sensor-status" role="status">{feedUrl ? 'Connecting…' : 'Demo data'}</p>
   <div class="sensor-window" tabindex="0" aria-label="Sensor readings. Focus to pause movement.">
     <div class="sensor-track">
-      <ul class="sensor-list">
-        {!feedUrl && samples.map((sample) => <li class="sensor-reading"><span class="sensor-icon" aria-hidden="true">{sample.icon}</span><div><div class="sensor-value"><span>{sample.label}</span><strong>{sample.value} <small>{sample.unit}</small></strong></div><p>{sample.node} · example reading</p></div></li>)}
-      </ul>
+      <ul class="sensor-list" set:html={!feedUrl ? samples.map(sample => renderSensorReading(sample, true)).join('') : ''} />
     </div>
   </div>
   <p class="sensor-empty" hidden>No public readings yet.</p>

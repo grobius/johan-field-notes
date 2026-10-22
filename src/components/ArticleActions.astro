@@ -1,0 +1,35 @@
+---
+import ActionIcon from './ActionIcon.astro';
+import { shareLinks } from '../lib/article-social.mjs';
+interface Props { postId: string; title: string; url: string }
+const { postId, title, url } = Astro.props;
+const links = shareLinks(title, url);
+---
+<section class="article-actions" aria-label="Like and share this article" data-article-actions data-post-id={postId} data-share-title={title} data-share-url={url}>
+  <p class="actions-heading"><span aria-hidden="true">&gt;_ </span>Worth a note?</p>
+  <div class="actions-row">
+    <button class="action-button like-button" type="button" data-like aria-pressed="false" disabled>
+      <ActionIcon name="heart" /><span data-like-label>Like</span><span class="like-count" data-like-count aria-label="Like count">—</span>
+    </button>
+    <a class="action-button" href={links.linkedin} target="_blank" rel="noopener noreferrer" aria-label="Share on LinkedIn (opens a new tab)"><ActionIcon name="linkedin" />LinkedIn</a>
+    <button class="action-button" type="button" data-native-share hidden><ActionIcon name="share" />Share</button>
+    <details class="share-menu" data-share-menu>
+      <summary class="action-button"><ActionIcon name="share" /><span data-menu-label>Share</span></summary>
+      <div class="share-options">
+        <a href={links.facebook} target="_blank" rel="noopener noreferrer">Facebook ↗</a>
+        <a href={links.x} target="_blank" rel="noopener noreferrer">X ↗</a>
+        <a href={links.bluesky} target="_blank" rel="noopener noreferrer">Bluesky ↗</a>
+        <a href={links.email}>Email ↗</a>
+      </div>
+    </details>
+    <button class="action-button" type="button" data-copy hidden><ActionIcon name="link" />Copy link</button>
+  </div>
+  <p class="action-feedback" data-like-feedback role="status" aria-live="polite"></p>
+  <p class="action-feedback" data-share-feedback role="status" aria-live="polite"></p>
+  <label class="copy-fallback" data-copy-fallback hidden>Copy this link<input type="text" value={url} readonly aria-label="Article link to copy" /></label>
+  <noscript><p class="action-feedback">Enable JavaScript to like this article. Sharing links work without it.</p></noscript>
+</section>
+<script>
+  import { initArticleActions } from '../scripts/article-actions';
+  document.querySelectorAll<HTMLElement>('[data-article-actions]').forEach(initArticleActions);
+</script>
